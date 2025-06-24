@@ -405,12 +405,21 @@
   </footer>
 
   <script>
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('sidebarToggle');
 
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+
+  // Close sidebar when any link inside it is clicked
+  const sidebarLinks = sidebar.querySelectorAll('a');
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('open');
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
