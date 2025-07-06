@@ -3,18 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>The Reef Oysterbay</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="reefstyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Firebase SDKs (INSIDE HEAD) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-storage-compat.js"></script>
+
+  <script>
+    // Your Firebase config
+    const firebaseConfig = {
+  apiKey: "AIzaSyDZjcsc447gUjGO2MUi6ostfEBxvOck6-U",
+  authDomain: "the-reef-oysterbay.firebaseapp.com",
+  projectId: "the-reef-oysterbay",
+  storageBucket: "the-reef-oysterbay.firebasestorage.app", // ✅ FIXED
+  messagingSenderId: "544800699946",
+  appId: "1:544800699946:web:d71ba37eba4cbd3f6cb553"
+};
+
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+  </script>
 </head>
+
 <body>
-  <button id="sidebarToggle">☰</button>
-  <nav id="sidebar">
-    <ul>
-      <li><a href="#food">Food</a></li>
-      <li><a href="#drinks">Drinks</a></li>
-      <li><a href="#contact">Find Us</a></li>
-    </ul>
-  </nav>
 
   <header>
     <h1 class="heading">The Reef Oysterbay</h1>
@@ -22,404 +36,113 @@
     <p class="tagline">Ocean Front Bar & Restaurant | Open 7 days • 10am - Late</p>
   </header>
 
-  <section class="sec1" id="food">
-  <h2>Food</h2>
-  <h3>Viepe Kona</h3>
-<ul class="menu-list">
-  <li>Chips plain – 4,000/=</li>
-  <li>Chips Mayai – 6,000/=</li>
-  <li>Chips Mayele beef – 9,000/=<br>Chips mayai mixed with slow grilled beef cubes / Chips yai ina nyamanyama ndani yake</li>
-  <li>ChipSo – 9,000/=<br>Chips mayai mixed with choma sausage / Chips yai ina sausage choma ndani yake</li>
-  <li>Chips Key – 12,000/=<br>Beef & sausage mix. Our own in-house version of chips mayai mixed with slow grilled beef cubes & choma sausages / Chips yai ina nyama nyama na sausage choma ndani yake</li>
-  <li>Chips Pro (with a mix of seafood) – 15,000/=<br>Mayai mixed with prawns / Chips yai ina samaki ndani yake</li>
-</ul>
+  <nav id="sidebar">
+    <ul>
+      <li><a href="#" onclick="showSection('gallery')">Home</a></li>
+      <li><a href="#" onclick="showSection('food-menu')">Food Menu</a></li>
+      <li><a href="#" onclick="showSection('drinks-menu')">Drinks Menu</a></li>
+      <li><a href="#" onclick="showSection('contact')">Contact Us</a></li>
+    </ul>
+  </nav>
 
-<h3>Sides/Accompaniment</h3>
-<ul class="menu-list">
-  <li>Mashed potatoes – 7,000/=</li>
-  <li>Fried rice – 7,000/=</li>
-  <li>Noodles – 5,000/=</li>
-  <li>Ugali Sembe – 3,000/=</li>
-  <li>Ugali Muhogo – 3,000/=</li>
-  <li>Ugali Udaga (Dona na Muhogo) – 3,000/=</li>
-</ul>
-<!-- done -->
+  <section id="gallery" class="menu-section">
+  <h2>Gallery</h2>
 
-<h3>Oceanic</h3>
-<ul class="menu-list">
-  <li>King fish portion – 18,000/= <br>Pishi letu, Kipande cha samaki Nguru kukaanga/choma</li>
-  <li>Tuna/Doral portion – 18,000/= <br>Pishi letu, Kipande cha samaki Jodari kukaanga/choma</li>
-  <li>Prawns Mamamia – 20,000/= <br>Our in house recipe with coconut sauce with a side / Pishi letu, prawns iliyopikwa na nazi</li>
-  <li>Butter garlic lemon prawn – 23,000/= <br>Our in house recipe with coconut sauce with a side</li>
-  <li>Octopus Coco kange – 18,000/= <br>Our own Makange style infused with coconut sauce  & chef's special sauce with a side / Pishi letu pweza makange na 'pishi la pwani halikosi nazi'</li>
-  <li>Calamari – 20,000/= <br>Pishi letu, Ngisi wa kukaanga</li>
-  <li>Whole Kolekole grilled/Fried – 25,000/= <br></li>
-  <li>Whole white/Red snapper grilled/Fried – 25,000/= <br> Changu mzima Kukaanga/choma</li>
-</ul>
 
-<h3>Sea Food Platters</h3>
-<ul class="menu-list">
-  <li>Ngwalaa – 75,000/= <br>Calamari | prawns | Whole fish (changu/kolekole)</li>
-  <li>Mashua – 90,000/= <br>Calamari | Octopus | Whole fish (changu/kolekole)</li>
-  <li>Jahazi – 120,000/= <br>Calamari | prawns | Octopus | Lobster | Whole fish (changu/kolekole)</li>
-</ul>
-<!-- done -->
-<h3>Land and Seas</h3>
-<ul class="menu-list">
-  <li>Red Surf & Turf – 40,000/= <br>Seafod and meat served on one sumptuous Platter
-    <br>Beef/Goat/Lamb au Tuna/Kingfish 1pc
-    <br>Sahani moja yenye aina moja ya nyama na aina moja ya samaki.(Chagua katika orodha)</li>
-  <li>Lobsteak – 40,000/= <br>Perfectly paired surf and turf pan seared garlic 
-    herb fillet mignon and a lobster tail. Served with a side of your choice</li>
-</ul>
-<!-- done -->
-<h3>Lakes and Rivers</h3>
-<ul class="menu-list">
-  <li>Tilapia/Sato fried – 27,000/=</li>
-  <li>Tilapia/Sato grilled – 29,000/=</li>
-  <li>Tilapia/Sato Makange – 29,000/=</li>
-  <li>Hoqwe/Kitoga/Arrid catfish grilled/ – 15,000/= <br>boil/mchemsho 1pc</li>
-</ul>
-
-<h3>Zizini Experience</h3>
-<ul class="menu-list">
-  <li>Mshikaki / Mishikaki – 3,000/= <br>Tasty and Tender beef cubes on skewer</li>
-  <li>Beef choma sausage – 3,500/=</li>
-  <li>Beef boerewors/Mtura portion – 15,500/=</li>
-  <li>Steak on green – 18,000/= <br>Beef tenderloin cut in cubes stir fry on skillet with 
-    a touch of greens and Chef's sauce.<br>Steak katika vipande vidogo vidogo, roast kavu 
-    viungo vya mbogamboga, ni tamu sana</li>
-  <li>Lamb on greens – 20,000/= <br>Nyama ya mbuzi vipande vidogovidogo, 
-    roast kavu na viungo vya mbogamboga, ni tamu
-    <br>Mutton meat cut into piece stir fry on skillet with a 
-        touch of greens and Chef's sauce</li>
-</ul>
-
-<h3>Mifugo ya Kisiwa / High Quality Beef</h3>
-<h4><br>We source high quality Beef with a traced history from farm to plate. 
-  Our meat is chilled for 21+ days to allow natural flavors to develop and tenderness</h4>
-<ul class="menu-list">
-  <li>Rump steak 300g – 40,000/=</li>
-  <li>T bone steak bone-in 350g – 40,000/=</li>
-  <li>Short ribs 300g – 35,000/=</li>
-  <li>Ribeye 500g – 70,000/=</li>
-</ul>
-<!-- done -->
-<h3>Bandani</h3>
-<h4><br>All served with sauce, salad & sides Chips/Ugali/Plantain/Mzuzu.</h4>
-<ul class="menu-list">
-  <li>Whole chicken fried – 30,000/=</li>
-  <li>Whole chicken Charcoal Grilled – 33,000/=</li>
-  <li>Whole chicken makange – 33,000/=</li>
-  <li>Half Chicken fried/Grilled – 17,000/=</li>
-  <li>Chicken Drumstick portion 4pcs – 15,000/=</li>
-</ul>
-
-<h3>Platters</h3>
-<h4><br>Served with sauces, salad and sides of choice</h4>
-<ul class="menu-list">
-  <li>Reef Kayak – 35,000/= <br>Portion ya mtu 1, yenye kipande samaki, 
-      sausage choma 1, kuku na company <br>Platter ideal for 1 person, served with a choice
-      of two options of proteins from the list Pc of fish, Sausages, chicken + sides</li>
-  <li>Reef Boat – 60,000/= <br>Portion ya 1-2 waut, yenye kipande samaki, sausage choma, 
-      kuku, mbuzi, beef na company <br>A platter ideal for 2 persons, served with a side 
-      of your choice<br>Beef, Fish, Sausages, Lamb, Chicken Drumstick</li>
-  <li>Reef Yacht – 85,000/= <br>A platter ideal for 3-4 persons, served with a choice of 2 sides
-      <br>Beef, Fish, Sausages 2, Lamb, Chicken Drumstick 4pcs <br>Portion ya 3-4 watu, 
-      yenye kipande samaki, sausage choma, kuku, mbuzi, beef na company - serving time 35min</li>
-  <li>Reef Marine – 110,000/= <br>A platter ideal for 3 or more persons served with a choice of 3
-      sides, Beef, Fish 2pcs, Sausages 4, Lamb, Chicken Drumstick 6pcs<br>Portion ya watu 3 au zaidi
-      yenye samaki, sausage choma, kuku, mbuzi, beef na company - serving time 35min</li>
-  <li>Reef Nyambizi – 150,000/= <br>Platter ya samaki wote katika list yetu ya Bahari, pi mtura
-      wa bure kama kionjo <br>Seafood platter, get to taste all our Oceanic options + free 
-      boerewors - serving time 35min <br>Clamari, Prawns, 1 whole kolekole, Kingfish, Octopus </li>
-</ul>
-
-<h3>BBQ Weekend (Friday – Sunday Only) / Wikiendi ya BBQ (Ijumaa – Jumapili Tu)</h3>
-<ul class="menu-list">
-  <li>Mbuzi Masaai – 20,000/= <br>Grilled mbuzi in masaai style and flavor.
-  Tender and juicy grilled goat</li>
-  <li>Beef ribs – 18,000/= <br>Charcoal grilled beef ribs with rich flavor 
-      served with a side of choice</li>
-  <li>Kiiza BBQ Platter serving – 45,000/= <br>Portion ya watu 2, nyama choma ng'ombe,
-    mbuzi, kuku, sausage na 2 accompaniments. <br>Platter ideal for 2 persons, served
-    with grilled beef, goat, chicken and sausages + 2 accompaniments of choice.</li>
-  <li>BBQ Platter – Tamulaini Feast 1 – 50,000/= <br>SA Rump steak 250g Sausage 1, Chicken ¼
-      , Steamed veggies, Salads, Dippings - 1</li>
-  <li>BBQ Platter – Tamulaini Feast 2 – 37,000/= <br>Beef/Goat 250g Sausage 1, Chicken ¼
-      , Steamed veggies, Salads, Dippings - 1 side</li>
-</ul>
-
-<h3>Catch of the Day (1 big fish 2kg–4kg) / Samaki wa Siku</h3>
-<ul class="menu-list">
-  <li>Ask for available fish – 35,000/= – 40,000/=</li>
-  <li>Grilled big fish ideal for a group of fish lovers <br>Varieties from Ocean, Lake and 
-    River waters<br><br>Uliza aina ya samaki apatikanae siku hii. Samaki wa baharini, 
-    ziwani na mitoni</li>
-  <li>Kingfish</li>
-  <li>Tuna</li>
-  <li>Cobia Fish</li>
-  <li>Barracuda</li>
-</ul>
-
-</section>
-
-  <section class="sec1" id="drinks">
-  <h2>Drinks</h2>
-
-  <h3>Beers</h3>
-  <ul class="menu-list">
-    <li>Local Beer – 3,000/=</li>
-    <li>Heineken – 5,000/=</li>
-    <li>Windhoek L – 5,000/=</li>
-    <li>Windhoek D – 6,000/=</li>
-    <li>Savannah – 6,000/=</li>
-    <li>Desperado – 6,000/=</li>
-    <li>Smirnoff Ice – 6,000/=</li>
-    <li>Hunters – 6,000/=</li>
-    <li>Brutal Fruit – 6,000/=</li>
-    <li>Corona Beer – 7,000/=</li>
-  </ul>
-
-  <h3>Soft Drinks</h3>
-  <ul class="menu-list">
-    <li>Maji Kilimanjaro 500ml – 2,000/=</li>
-    <li>Hill Water 500ml – 2,000/=</li>
-    <li>Hill Sparkling Water – 3,000/=</li>
-    <li>Soda – 2,000/=</li>
-    <li>Ceres Juice – 10,000/=</li>
-    <li>Azam Juice – 6,000/=</li>
-    <li>Bavaria – 6,000/=</li>
-    <li>Grand Malt – 6,000/=</li>
-    <li>Redbull – 7,000/=</li>
-    <li>Switch – 6,000/=</li>
-  </ul>
-
-  <h3>Gin</h3>
-  <ul class="menu-list">
-    <li>Gordon's 750ml – 100,000/=</li>
-    <li>Gordon's 250ml – 30,000/=</li>
-    <li>Hendrick's Gin – 130,000/=</li>
-    <li>Konyagi 750 – 25,000/=</li>
-    <li>Konyagi 500ml – 20,000/=</li>
-    <li>K Vanti Large – 35,000/=</li>
-  </ul>
-
-  <h3>Whiskey</h3>
-  <ul class="menu-list">
-    <li>JW Red Label – 100,000/=</li>
-    <li>JW Red Label 200ml – 30,000/=</li>
-    <li>JW Black Label – 130,000/=</li>
-    <li>JW Double Black 750ml – 250,000/=</li>
-    <li>JW Double Black NL – 250,000/=</li>
-    <li>JW Gold Reserve – 400,000/=</li>
-    <li>JW Gold Label – 420,000/=</li>
-    <li>Jack Daniel's 1L – 180,000/=</li>
-    <li>Jack Daniel's 700ml – 150,000/=</li>
-    <li>Jack Daniel's 350ml – 80,000/=</li>
-    <li>Singleton 12 Yrs – 200,000/=</li>
-    <li>Singleton 15 Yrs – 330,000/=</li>
-    <li>Gentleman Jack – 230,000/=</li>
-    <li>J & B – 120,000/=</li>
-    <li>Ballentine – 100,000/=</li>
-    <li>Ballentine 200ml – 30,000/=</li>
-    <li>Glenfiddich 12yrs – 250,000/=</li>
-    <li>Glenfiddich 15yrs – 350,000/=</li>
-    <li>Glenfiddich 18yrs – 400,000/=</li>
-    <li>Black & White – 50,000/=</li>
-    <li>Famous Grouse – 90,000/=</li>
-    <li>Grants 750ml – 70,000/=</li>
-    <li>Grants 200ml – 30,000/=</li>
-    <li>Hunting Lodge – 50,000/=</li>
-    <li>Jameson 750ml – 130,000/=</li>
-    <li>Jameson 200ml – 50,000/=</li>
-    <li>Jack Daniel's Black Barrel 200ml – 70,000/=</li>
-    <li>William Lawson – 80,000/=</li>
-  </ul>
-
-  <h3>Vodka</h3>
-  <ul class="menu-list">
-    <li>Absolute Vodka 1L – 150,000/=</li>
-    <li>Absolute 750ml – 120,000/=</li>
-    <li>Absolute 350ml – 70,000/=</li>
-    <li>Smirnoff Vodka – 100,000/=</li>
-    <li>Magic Moments – 60,000/=</li>
-  </ul>
-
-  <h3>Liquor</h3>
-  <ul class="menu-list">
-    <li>Amarula 750ml – 80,000/=</li>
-    <li>Amarula 375ml – 50,000/=</li>
-    <li>Jagermeister 750 – 120,000/=</li>
-    <li>Jagermeister 375 – 70,000/=</li>
-    <li>Jagermeister 350 – 50,000/=</li>
-    <li>Strawberry Lips – 70,000/=</li>
-  </ul>
-
-  <h3>Cognac</h3>
-  <ul class="menu-list">
-    <li>Hennessy VS 350ml – 120,000/=</li>
-    <li>Hennessy VS 750ml – 210,000/=</li>
-    <li>Hennessy VSOP – 360,000/=</li>
-    <li>Hennessy XO – 1,200,000/=</li>
-    <li>Old Admiral VSOP – 50,000/=</li>
-    <li>Martel VS – 220,000/=</li>
-    <li>Martell VSOP – 300,000/=</li>
-    <li>Martell Blue Swift – 360,000/=</li>
-    <li>Martell XO – 700,000/=</li>
-    <li>Hanson Choice – 350,000/=</li>
-  </ul>
-
-  <h3>Rum</h3>
-  <ul class="menu-list">
-    <li>Bacardi White – 100,000/=</li>
-    <li>Bacardi Black – 100,000/=</li>
-    <li>Captain Morgan's Spice – 70,000/=</li>
-    <li>Captain Morgan Gold – 50,000/=</li>
-  </ul>
-
-  <h3>Tequila</h3>
-  <ul class="menu-list">
-    <li>Camino Gold – 150,000/=</li>
-    <li>Camino Tequila – 120,000/=</li>
-  </ul>
-
-  <h3>Champagne</h3>
-  <ul class="menu-list">
-    <li>Moet Brut – 290,000/=</li>
-    <li>Moet Nectal Imperial – 300,000/=</li>
-    <li>Moet Nectal Rose – 350,000/=</li>
-    <li>Freixenet Cuvee Ice – 100,000/=</li>
-    <li>Martin Rose – 100,000/=</li>
-    <li>Provetto Brut – 60,000/=</li>
-    <li>Mohans Non-Alcoholic – 20,000/=</li>
-  </ul>
-
-  <h3>Red Wines</h3>
-<ul class="menu-list">
-  <li>Nederburg – 60k</li>
-  <li>Four Cousins Sweet Red – 40k</li>
-  <li>Namaqua Red – 35k</li>
-  <li>Glass – 15k</li>
-  <li>Lion’s Hill Dry Red – 40k</li>
-  <li>Landskroon Dry Red – 60k</li>
-  <li>Drostdyhof Red – 40k</li>
-  <li>Lion’s Hill Sweet Red – 40k</li>
-  <li>Bonne Esperance Dry Red – 40k</li>
-  <li>Dompo – 40k</li>
-  <li>4th Street – 40k</li>
-  <li>Robertson Sweet Red – 40k</li>
-  <li>Image Large – 40k</li>
-  <li>Tall Horse – 60k</li>
-  <li>K.W.V Merlot – 60k</li>
-  <li>K.W.V Pinotage – 60k</li>
-  <li>Presidential Reserve – 100k</li>
-  <li>Alta Wine – 40k</li>
-  <li>Image Small – 20k</li>
-  <li>K.W.V Shiraz – 60k</li>
-</ul>
-
-<h3>White Wines</h3>
-<ul class="menu-list">
-  <li>Nederburg – 60k</li>
-  <li>Four Cousins Sweet White – 40k</li>
-  <li>Four Cousins Dry White – 40k</li>
-  <li>Saint Anna – 40k</li>
-  <li>Tall Horse White – 60k</li>
-  <li>Drostdyhof White – 40k</li>
-  <li>Namaqua White Box – 15k</li>
-  <li>Glass – 15k</li>
-  <li>Lion’s Hill Sweet White – 40k</li>
-  <li>Lion’s Hill Dry White – 40k</li>
-  <li>4th Street – 40k</li>
-  <li>Bonne Esperance Dry White – 40k</li>
-  <li>Bonne Esperance Sweet White – 40k</li>
-  <li>Landskroon Dry White – 60k</li>
-  <li>Robertson Sweet White – 40k</li>
-  <li>Spier Sauvignon Blank – 60k</li>
-  <li>Spier Chenin Blank – 60k</li>
-  <li>Pearly Bay Rose – 40k</li>
-  <li>Drostdyhof White Small – 15k</li>
-  <li>Nederburg Rose – 60k</li>
-</ul>
-
-  <h3>Reef Special Wine</h3>
-  <ul class="menu-list">
-    <li>Silk & Spice – 200,000/=</li>
-  </ul>
-
-  <h3>Shots</h3>
-  <ul class="menu-list">
-    <li>Jager Bomb – 10,000/=</li>
-    <li>Spring Bomb – 5,000/=</li>
-    <li>B52 – 5,000/=</li>
-  </ul>
-
-  <h3>Cocktails</h3>
-<ul class="menu-list">
-  <li>Long Island Ice Tea – 18,000/=</li>
-  <li>The Reef Flow – 18,000/=</li>
-  <li>Passion Mojito – 15,000/=</li>
-  <li>Margarita – 15,000/=</li>
-  <li>Sex on the Beach – 15,000/=</li>
-  <li>Pina Colada – 15,000/=</li>
-  <li>Strawberry Drag – 15,000/=</li>
-  <li>Blue Lagoon – 15,000/=</li>
-  <li>Whisky Sour – 15,000/=</li>
-</ul>
-
-<h3>Mocktails</h3>
-<ul class="menu-list">
-  <li>Virgin Mojito – 10,000/=</li>
-  <li>Virgin Colada – 10,000/=</li>
-  <li>Rock Shandy – 10,000/=</li>
-</ul>
-
-<h3>Fresh Juice</h3>
-<ul class="menu-list">
-  <li>Fresh Juice – 5,000/=</li>
-</ul>
-
-<h3>Smoothie</h3>
-<ul class="menu-list">
-  <li>Smoothie – 10,000/=</li>
-</ul>
-
-<h3>Milkshake</h3>
-<ul class="menu-list">
-  <li>Milkshake – 15,000/=</li>
-</ul>
-
+  <!-- Uploaded Images will show here -->
+  <div class="image-menu" id="gallery-container">
+    <!-- Images will load here later -->
+  </div>
 </section>
 
 
-  <section class="sec1" id="contact">
-    <h2>Find Us</h2>
-    <p>📞 +255 711 484342</p>
-    <p>📍 Toure Drive, Coco Beach, Dar es Salaam</p>
-    <p>📸 <a href="https://www.instagram.com/thereefoysterbay/" target="_blank">@thereefoysterbay</a></p>
+  <section id="food-menu" class="menu-section hidden">
+    <h2>Food Menu</h2>
+    <div class="image-menu">
+      <img src="food1.png" alt="Food Menu 1">
+      <img src="food2.png" alt="Food Menu 2">
+      <img src="food3.png" alt="Food Menu 3">
+      <img src="food4.png" alt="Food Menu 4">
+      <img src="food5.png" alt="Food Menu 5">
+      <img src="food6.png" alt="Food Menu 6">
+      <img src="food7.png" alt="Food Menu 7">
+      <img src="food8.png" alt="Food Menu 8">
+    </div>
+  </section>
+
+  <section id="drinks-menu" class="menu-section hidden">
+    <h2>Drinks Menu</h2>
+    <div class="image-menu">
+      <img src="drinks1.png" alt="Drinks Menu 1">
+      <img src="drinks2.png" alt="Drinks Menu 2">
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section hidden">
+    <h2>Contact Us</h2>
+    <p><strong>Location:</strong><a href="https://www.google.com/maps/place/reef+oysterbay/data=!4m2!3m1!1s0x185c4d006b424559:0x8c80a71485a90e46?sa=X&ved=1t:242&ictx=111"> Toure Drive, Coco Beach, Dar es Salaam</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+255711484342">+255 711 484342</a></p>
+    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/thereefoysterbay/" target="_blank">@thereefoysterbay</a></p>
   </section>
 
   <footer>
-    <p>© 2025 The Reef Oysterbay. All rights reserved.</p>
+    <p id="foot">© 2025 The Reef Oysterbay. All rights reserved.</p>
   </footer>
 
-  <script>
-  const sidebar = document.getElementById('sidebar');
-  const toggle = document.getElementById('sidebarToggle');
+  
 
-  toggle.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-  });
+<script>
+  function loadGalleryImages() {
+  const galleryRef = firebase.storage().ref('gallery/');
+  const container = document.getElementById('gallery-container');
+  container.innerHTML = '';
 
-  // Close sidebar when any link inside it is clicked
-  const sidebarLinks = sidebar.querySelectorAll('a');
-  sidebarLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      sidebar.classList.remove('open');
+  console.log("📦 DOM loaded, running loadGalleryImages()");
+  console.log("🔍 Looking inside Firebase Storage → gallery/");
+  console.log("🌐 Origin:", window.location.origin);
+  console.log("📂 Bucket:", firebase.app().options.storageBucket);
+
+  galleryRef.listAll()
+    .then((res) => {
+      console.log(`✅ Found ${res.items.length} items in 'gallery/'`);
+
+      res.items.forEach((itemRef, index) => {
+        console.log(`🔄 Getting URL for item ${index + 1}:`, itemRef.fullPath);
+
+        itemRef.getDownloadURL()
+          .then((url) => {
+            console.log(`✅ Success: ${url}`);
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = "Gallery Image";
+            img.classList.add("gallery-image");
+            container.appendChild(img);
+          })
+          .catch((urlError) => {
+            console.error("❌ getDownloadURL failed for", itemRef.fullPath, urlError);
+          });
+      });
+    })
+    .catch((listError) => {
+      console.error("🔥 listAll() failed!", listError);
+      container.innerHTML = '<p>Error loading images.</p>';
     });
+}
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("📦 DOM loaded, running loadGalleryImages()");
+    loadGalleryImages();
   });
+
+  function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    if (id === 'gallery') loadGalleryImages();
+  }
 </script>
+
 
 </body>
 </html>
