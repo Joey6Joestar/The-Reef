@@ -6,23 +6,18 @@
   <link rel="stylesheet" href="reefstyle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Firebase SDKs (INSIDE HEAD) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-storage-compat.js"></script>
 
   <script>
-    // Your Firebase config
     const firebaseConfig = {
-  apiKey: "AIzaSyDZjcsc447gUjGO2MUi6ostfEBxvOck6-U",
-  authDomain: "the-reef-oysterbay.firebaseapp.com",
-  projectId: "the-reef-oysterbay",
-  storageBucket: "the-reef-oysterbay.firebasestorage.app", // ✅ FIXED
-  messagingSenderId: "544800699946",
-  appId: "1:544800699946:web:d71ba37eba4cbd3f6cb553"
-};
-
-
-    // Initialize Firebase
+      apiKey: "AIzaSyDZjcsc447gUjGO2MUi6ostfEBxvOck6-U",
+      authDomain: "the-reef-oysterbay.firebaseapp.com",
+      projectId: "the-reef-oysterbay",
+      storageBucket: "the-reef-oysterbay.firebasestorage.app",
+      messagingSenderId: "544800699946",
+      appId: "1:544800699946:web:d71ba37eba4cbd3f6cb553"
+    };
     firebase.initializeApp(firebaseConfig);
     const storage = firebase.storage();
   </script>
@@ -31,33 +26,30 @@
 <body>
 
   <header>
-    <h1 class="heading">The Reef Oysterbay</h1>
-    <p class="tagline">Dar es Salaam's Favorite Coastal Spot – Food by Day, Vibes by Night</p>
-    <p class="tagline">Ocean Front Bar & Restaurant | Open 7 days • 10am - Late</p>
+    <div id="hamburger" onclick="toggleSidebar()">☰</div>
+    <h1 class="heading"></h1>
   </header>
 
-  <nav id="sidebar">
+  <nav id="topline">
+  <p>Dar es Salaam's Favorite Coastal Spot – Food by Day, Vibes by Night</p>
+  <p>Ocean Front Bar & Restaurant | Open 7 days • 10am - Late</p>
+</nav>
+
+  <nav id="sidebar" class="collapsed">
     <ul>
-      <li><a href="#" onclick="showSection('gallery')">Home</a></li>
-      <li><a href="#" onclick="showSection('food-menu')">Food Menu</a></li>
-      <li><a href="#" onclick="showSection('drinks-menu')">Drinks Menu</a></li>
-      <li><a href="#" onclick="showSection('contact')">Contact Us</a></li>
+      <li><a href="#" class="nav-link" onclick="showSection('gallery', this)">Gallery</a></li>
+      <li><a href="#" class="nav-link" onclick="showSection('food-menu', this)">Food Menu</a></li>
+      <li><a href="#" class="nav-link" onclick="showSection('drinks-menu', this)">Drinks Menu</a></li>
+      <li><a href="#" class="nav-link" onclick="showSection('contact', this)">Contact Us</a></li>
     </ul>
   </nav>
 
   <section id="gallery" class="menu-section">
-  <h2>Gallery</h2>
-
-
-  <!-- Uploaded Images will show here -->
-  <div class="image-menu" id="gallery-container">
-    <!-- Images will load here later -->
-  </div>
-</section>
-
+    <h2>Gallery</h2>
+    <div class="image-menu" id="gallery-container"></div>
+  </section>
 
   <section id="food-menu" class="menu-section hidden">
-    <h2>Food Menu</h2>
     <div class="image-menu">
       <img src="food1.png" alt="Food Menu 1">
       <img src="food2.png" alt="Food Menu 2">
@@ -71,7 +63,6 @@
   </section>
 
   <section id="drinks-menu" class="menu-section hidden">
-    <h2>Drinks Menu</h2>
     <div class="image-menu">
       <img src="drinks1.png" alt="Drinks Menu 1">
       <img src="drinks2.png" alt="Drinks Menu 2">
@@ -80,7 +71,7 @@
 
   <section id="contact" class="contact-section hidden">
     <h2>Contact Us</h2>
-    <p><strong>Location:</strong><a href="https://www.google.com/maps/place/reef+oysterbay/data=!4m2!3m1!1s0x185c4d006b424559:0x8c80a71485a90e46?sa=X&ved=1t:242&ictx=111"> Toure Drive, Coco Beach, Dar es Salaam</a></p>
+    <p><strong>Location:</strong> Toure Drive, Coco Beach, Dar es Salaam</p>
     <p><strong>Phone:</strong> <a href="tel:+255711484342">+255 711 484342</a></p>
     <p><strong>Instagram:</strong> <a href="https://www.instagram.com/thereefoysterbay/" target="_blank">@thereefoysterbay</a></p>
   </section>
@@ -89,60 +80,44 @@
     <p id="foot">© 2025 The Reef Oysterbay. All rights reserved.</p>
   </footer>
 
-  
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    }
 
-<script>
-  function loadGalleryImages() {
-  const galleryRef = firebase.storage().ref('gallery/');
-  const container = document.getElementById('gallery-container');
-  container.innerHTML = '';
+    function showSection(id, element = null) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
 
-  console.log("📦 DOM loaded, running loadGalleryImages()");
-  console.log("🔍 Looking inside Firebase Storage → gallery/");
-  console.log("🌐 Origin:", window.location.origin);
-  console.log("📂 Bucket:", firebase.app().options.storageBucket);
+      if (id === 'gallery') loadGalleryImages();
 
-  galleryRef.listAll()
-    .then((res) => {
-      console.log(`✅ Found ${res.items.length} items in 'gallery/'`);
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      if (element) element.classList.add('active');
 
-      res.items.forEach((itemRef, index) => {
-        console.log(`🔄 Getting URL for item ${index + 1}:`, itemRef.fullPath);
+      document.getElementById('sidebar').classList.add('collapsed');
+    }
 
-        itemRef.getDownloadURL()
-          .then((url) => {
-            console.log(`✅ Success: ${url}`);
+    function loadGalleryImages() {
+      const galleryRef = firebase.storage().ref('gallery/');
+      const container = document.getElementById('gallery-container');
+      container.innerHTML = '';
+      galleryRef.listAll().then(res => {
+        res.items.forEach(itemRef => {
+          itemRef.getDownloadURL().then(url => {
             const img = document.createElement('img');
             img.src = url;
             img.alt = "Gallery Image";
             img.classList.add("gallery-image");
             container.appendChild(img);
-          })
-          .catch((urlError) => {
-            console.error("❌ getDownloadURL failed for", itemRef.fullPath, urlError);
           });
+        });
       });
-    })
-    .catch((listError) => {
-      console.error("🔥 listAll() failed!", listError);
-      container.innerHTML = '<p>Error loading images.</p>';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadGalleryImages();
     });
-}
-
-
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log("📦 DOM loaded, running loadGalleryImages()");
-    loadGalleryImages();
-  });
-
-  function showSection(id) {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(sec => sec.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-    if (id === 'gallery') loadGalleryImages();
-  }
-</script>
-
+  </script>
 
 </body>
 </html>
