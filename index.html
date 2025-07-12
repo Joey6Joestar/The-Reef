@@ -31,12 +31,13 @@
   </header>
 
   <nav id="topline">
-  <p>Dar es Salaam's Favorite Coastal Spot – Food by Day, Vibes by Night</p>
-  <p>Ocean Front Bar & Restaurant | Open 7 days • 10am - Late</p>
-</nav>
+    <p>Dar es Salaam's Favorite Coastal Spot – Food by Day, Vibes by Night</p>
+    <p>Ocean Front Bar & Restaurant | Open 7 days • 10am - Late</p>
+  </nav>
 
   <nav id="sidebar" class="collapsed">
     <ul>
+      <li><a href="#" class="nav-link" onclick="showSection('home', this)">Home</a></li>
       <li><a href="#" class="nav-link" onclick="showSection('gallery', this)">Gallery</a></li>
       <li><a href="#" class="nav-link" onclick="showSection('food-menu', this)">Food Menu</a></li>
       <li><a href="#" class="nav-link" onclick="showSection('drinks-menu', this)">Drinks Menu</a></li>
@@ -44,7 +45,11 @@
     </ul>
   </nav>
 
-  <section id="gallery" class="menu-section">
+  <section id="home" class="menu-section">
+    <img src="HomePagePic.png" alt="Home Page" class="home-image">
+  </section>
+
+  <section id="gallery" class="menu-section hidden">
     <h2>Gallery</h2>
     <div class="image-menu" id="gallery-container"></div>
   </section>
@@ -115,6 +120,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      showSection('home');
       loadGalleryImages();
     });
   </script>
