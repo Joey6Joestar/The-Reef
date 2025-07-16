@@ -30,6 +30,31 @@
     <h1 class="heading"></h1>
   </header>
 
+  <div class="manual-slider">
+  <img src="pic1.png" alt="Ad 1" class="slide active">
+  <img src="pic2.png" alt="Ad 2" class="slide">
+  <img src="pic3.png" alt="Ad 3" class="slide">
+</div>
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.manual-slider img');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  showSlide(currentSlide);
+  setInterval(nextSlide, 5000); // 5 seconds hold + instant fade transition
+</script>
+
+
   <nav id="topline">
     <p>Dar es Salaam's Favorite Coastal Spot – Food by Day, Vibes by Night</p>
     <p>Ocean Front Bar & Restaurant | Open 7 days • 10am - Late</p>

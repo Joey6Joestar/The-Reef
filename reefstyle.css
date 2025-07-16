@@ -188,6 +188,31 @@ footer {
   display: block;
 }
 
+.manual-slider {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  width: 100%;
+  background: #0077b6;
+}
+
+.manual-slider img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.manual-slider img.active {
+  opacity: 1;
+}
+
+
+
 
 
 
