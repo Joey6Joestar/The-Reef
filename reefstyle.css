@@ -8,10 +8,10 @@ body {
 }
 
 header {
-  background: url('PotentialHeader2.jpg') no-repeat center center;
+  background: url('PotentialHeader3.jpg') no-repeat center center;
   background-size: 100% 100%;
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 150px;
+  max-height: 150px;
   padding: 40px 20px;
   text-align: center;
   position: relative;
