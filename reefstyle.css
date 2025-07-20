@@ -39,19 +39,24 @@ header p {
   color: #fff;
   text-align: center;
   padding: 10px 0;
-}
-
-#topline p {
-  margin: 0;
   font-weight: bold;
   font-size: 1rem;
+  line-height: 1.4;
 }
 
 @media (max-width: 600px){
   #topline {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
   }
 }
+
+/*#topline p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.8em;
+  
+}*/
 
 
 #hamburger {
