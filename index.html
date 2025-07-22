@@ -90,6 +90,7 @@
   <nav id="sidebar" class="collapsed">
     <ul>
       <li><a href="#" class="nav-link" onclick="showSection('home', this)">Home</a></li>
+      <li><a href="#" class="nav-link" onclick="showSection('events', this)">Events</a></li>
       <li><a href="#" class="nav-link" onclick="showSection('gallery', this)">Gallery</a></li>
       <li><a href="#" class="nav-link" onclick="showSection('food-menu', this)">Food Menu</a></li>
       <li><a href="#" class="nav-link" onclick="showSection('drinks-menu', this)">Drinks Menu</a></li>
@@ -100,6 +101,11 @@
   <section id="home" class="menu-section">
   <img src="HomePagePic.png" alt="Home Page Image" class="home-image">
   </section>
+
+  <section id="events" class="menu-section hidden">
+  <h2>Events</h2>
+  <div class="image-menu" id="events-container"></div>
+</section>
 
   <section id="gallery" class="menu-section hidden">
     
@@ -147,6 +153,7 @@
       document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
       document.getElementById(id).classList.remove('hidden');
 
+      if (id === 'events') loadEventMedia();
       if (id === 'gallery') loadGalleryImages();
 
       document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -155,22 +162,65 @@
       document.getElementById('sidebar').classList.add('collapsed');
     }
 
-    function loadGalleryImages() {
-      const galleryRef = firebase.storage().ref('gallery/');
-      const container = document.getElementById('gallery-container');
-      container.innerHTML = '';
-      galleryRef.listAll().then(res => {
-        res.items.forEach(itemRef => {
-          itemRef.getDownloadURL().then(url => {
-            const img = document.createElement('img');
-            img.src = url;
-            img.alt = "Gallery Image";
-            img.classList.add("gallery-image");
-            container.appendChild(img);
-          });
+    function loadEventMedia() {
+    const eventsRef = firebase.storage().ref('events/');
+    const container = document.getElementById('events-container');
+    container.innerHTML = '';
+
+    eventsRef.listAll().then(res => {
+    res.items.forEach(itemRef => {
+      itemRef.getDownloadURL().then(url => {
+        const fileName = itemRef.name.toLowerCase();
+        let media;
+
+        if (fileName.endsWith('.mp4') || fileName.endsWith('.webm') || fileName.endsWith('.mov')) {
+          media = document.createElement('video');
+          media.src = url;
+          media.controls = true;
+        } else {
+          media = document.createElement('img');
+          media.src = url;
+          media.alt = "Event Media";
+        }
+
+        media.classList.add('gallery-image'); // 🔁 reuse the same styling
+        container.appendChild(media);
         });
-      });
+       });
+       });
     }
+
+
+    function loadGalleryImages() {
+    const galleryRef = firebase.storage().ref('gallery/');
+    const container = document.getElementById('gallery-container');
+    container.innerHTML = '';
+
+    galleryRef.listAll().then(res => {
+    res.items.forEach(itemRef => {
+      itemRef.getDownloadURL().then(url => {
+        const fileName = itemRef.name.toLowerCase();
+        let media;
+
+        if (fileName.endsWith('.mp4') || fileName.endsWith('.webm') || fileName.endsWith('.mov')) {
+          media = document.createElement('video');
+          media.src = url;
+          media.controls = true;
+          media.classList.add('gallery-image'); // ✅ same class for same style
+        } else {
+          media = document.createElement('img');
+          media.src = url;
+          media.alt = "Gallery Image";
+          media.classList.add('gallery-image');
+        }
+
+
+        container.appendChild(media);
+      });
+    });
+  });
+}
+
 
     document.addEventListener("DOMContentLoaded", () => {
       showSection('home');
