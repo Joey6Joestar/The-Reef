@@ -40,6 +40,8 @@
   <div class="slide-track">
     <img src="ICE-FACTORY-FINAL.jpg" alt="Ad 1">
     <img src="CITY-INN-FINAL.jpg" alt="Ad 2">
+    <img src="ICE-FACTORY-FINAL.jpg" alt="Ad 3">
+    <img src="CITY-INN-FINAL.jpg" alt="Ad 4">
     
   </div>
 </div>
@@ -103,7 +105,7 @@
   </section>
 
   <section id="events" class="menu-section hidden">
-  <h2>Events</h2>
+  
   <div class="image-menu" id="events-container"></div>
 </section>
 
@@ -226,6 +228,19 @@
       showSection('home');
       loadGalleryImages();
     });
+
+    document.addEventListener('click', function(event) {
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburger');
+
+  // If sidebar is open and click is outside the sidebar and hamburger
+  if (!sidebar.classList.contains('collapsed') &&
+      !sidebar.contains(event.target) &&
+      !hamburger.contains(event.target)) {
+    sidebar.classList.add('collapsed');
+  }
+});
+
   </script>
 
 </body>
